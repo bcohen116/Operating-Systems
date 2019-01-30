@@ -8,7 +8,7 @@
 using namespace std;
 
 //Instructions of assignment:
-// Check inputs for errors
+// Check inputs for errors (input must be a filename that exists)
 //Create 3 child forks
 // Enter N number of loops and display:
 //  Each process (both parent and children) display PID, or PID + Parent process
