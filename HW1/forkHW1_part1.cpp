@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
     else if (pid == 0){
       //A Child process is running.
       int parent = getppid();//get parent ID, should be the same as the ppid variable above
-      printf("This is a child process, my PID is %d, my parent PID is %d \n",pid,parent);
+      printf("This is a child process, my PID is %d, my parent PID is %d \n",getpid(),parent);
     }
     else{
       perror("This should never happen, something is very wrong with a fork. \n");
