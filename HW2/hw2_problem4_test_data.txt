@@ -1,0 +1,6 @@
+this is a line
+this is another line
+here is a duplicate line to test
+here is a duplicate line to test
+more stuff
+this is the last line

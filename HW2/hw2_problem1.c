@@ -12,6 +12,7 @@
 /// Check if number of inputs is correct
 /// Create a child using fork
 /// In the Child, redirect the stdout to the filename specified in the input
+///</summary>
 int main(int argc, char* argv[])
 {
 	int pid,output;
@@ -53,5 +54,6 @@ int main(int argc, char* argv[])
 			printf("Child PID %d Finished running \n \n", finishedPid);
 		}
 	}
+	close(output);//safely close opened file
 	return 0; //end program
 }
