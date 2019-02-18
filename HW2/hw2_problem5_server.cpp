@@ -7,6 +7,7 @@
 #include <fstream>//for reading a file line by line
 #include <algorithm>//for upper case functions
 #include <fcntl.h>//for open permissions
+#include <sys/stat.h>
 
 using namespace std;
 
