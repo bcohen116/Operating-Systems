@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 	char * data;
 	string line;
 
-	fclose(fopen(FILE_NAME, "w"));
+	//fclose(fopen(FILE_NAME, "w"));
 	sharedFile = open(FILE_NAME, O_RDWR, 0600);//open shared memory file, have to use RDWR or mmap will fail
 	if (sharedFile < 0) {
 		perror("failed to open file to use for shared memory, error: ");
@@ -49,11 +49,21 @@ int main(int argc, char* argv[]) {
 	}
 
 	//read contents of shared memory until we're done
-	ifstream out(DATA_FILE);
-	while (getline(out, line)) {
-		printf("Line Received: %s \n", line.c_str());
+	//ifstream out(shared_memory);
+	//while (getline(out, line) || strcmp(line.c_str(), "STOP") != 0) {
+	//	printf("Line Received: %s \n", line.c_str());
+	//}
+	//out.close();//safely close the stream
+	struct stat fileInfo = { 0 };
+	if (fstat(sharedFile, &fileInfo) == -1)
+	{
+		perror("Error getting the file size");
+		exit(EXIT_FAILURE);
 	}
-	out.close();//safely close the stream
+	for (off_t i = 0; i < fileInfo.st_size; i++)
+	{
+		printf("Found character %c at %ji\n", shared_memory[i], (intmax_t)i);
+	}
 
 	//Done with work, server cleanup
 	if (munmap(shared_memory, MEMORY_SIZE) < 0) {
