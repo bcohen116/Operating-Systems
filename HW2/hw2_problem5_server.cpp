@@ -49,21 +49,11 @@ int main(int argc, char* argv[]) {
 		exit(1);
 	}
 
-	//read contents of shared memory until we're done
-	//ifstream out(shared_memory);
-	//while (getline(out, line) || strcmp(line.c_str(), "STOP") != 0) {
-	//	printf("Line Received: %s \n", line.c_str());
-	//}
-	//out.close();//safely close the stream
-	struct stat fileInfo = { 0 };
-	if (fstat(sharedFile, &fileInfo) == -1)
-	{
-		perror("Error getting the file size");
-		exit(EXIT_FAILURE);
-	}
-	for (off_t i = 0; i < fileInfo.st_size; i++)
-	{
-		printf("Found character %c at %ji\n", shared_memory[i], (intmax_t)i);
+	//read the contents of the shared memory
+	while (strcmp(shared_memory, "STOP") != 0) {
+		//continue reading until there are no more messages
+		printf("Received: %s \n", shared_memory);
+		sleep(1);
 	}
 
 	//Done with work, server cleanup

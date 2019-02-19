@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
 		sleep(1);//wait for 1 second to satisfy the problem requirements
 	}
 	out.close();//safely close the stream
-	strncpy(shared_memory, "STOP", MEMORY_SIZE);//tell server we're done
+	strcpy(shared_memory, "STOP");//tell server we're done
 
 	//Done with work, cleanup
 	close(sharedFile);
